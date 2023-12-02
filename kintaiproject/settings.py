@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'django_bootstrap5',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -148,17 +149,17 @@ AUTHENTICATION_BACKENDS = (
   #管理サイト用(ユーザー名認証)
 )
 
-#メールアドレス認証に変更する設定
+'''#メールアドレス認証に変更する設定
 ACCOUNT_AUTHETICATION_METHOD = 'email'
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = False'''
 
-#サインアップにメールアドレス確認を挟むように設定
+'''サインアップにメールアドレス確認を挟むように設定
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = True'''
 
 #ログイン/ログアウト後の遷移先を設定
-LOGIN_REDIRECT_URL = 'kintai:top'
-ACCCOUNT_LOGOUT_REDIRECT_URL = 'accounts_login'
+LOGIN_REDIRECT_URL = 'kintaitop'
+ACCCOUNT_LOGOUT_REDIRECT_URL = 'kintai:top'
 
 #ログアウトリンクのクリック一発でログアウトする設定
 ACCOUNT_LOGOUT_ON_GET = True
@@ -166,7 +167,9 @@ ACCOUNT_LOGOUT_ON_GET = True
 #django-allauthが送信するメールの件名に自動付与される接頭辞をブランクにする設定
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 
-#デフォルトのメール送信元を設定
-DEFAULT_FROM_EMAIL = os.environ.get('FROM_EMAIL')
+'''#デフォルトのメール送信元を設定
+DEFAULT_FROM_EMAIL = os.environ.get('FROM_EMAIL')'''
 
 LOGIN_URL = '/account/login/' # ログインURLの設定
+
+ACCOUNT_SESSION_REMEMBER = True

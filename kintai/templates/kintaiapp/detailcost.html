@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+  <div class="container-fluid px-4">
+    <h1 class="mt-4">人件費情報</h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">従業員の給与に関する情報</li>
+    </ol>
+    <ul>
+    <li>労働時間:8時間</li>
+    <li>休憩時間:1時間(労働時間に含まない)</li>
+    <li>有給:時給×8時間の給与を支給</li>
+    <li>残業手当:時給の1.25倍</li>
+    <li>深夜手当(22:00以降):時給の1.25倍</li>
+    </ul>
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        人件費情報一覧表
+      </div>
+      <div class="card-body">
+        <table class="table" id="datatablesSimple">
+          <thead>
+            <tr>
+              <th>部署</th>
+              <th>役職</th>
+              <th>時給</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>部署</th>
+              <th>役職</th>
+              <th>時給</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr>
+              <td>営業部</td>
+              <td>部長</td>
+              <td>2500</td>
+            </tr>
+            <tr>
+              <td>営業部</td>
+              <td>課長</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>営業部</td>
+              <td>一般社員</td>
+              <td>1500</td>
+            </tr>
+            <tr>
+              <td>経理部</td>
+              <td>部長</td>
+              <td>2500</td>
+            </tr>
+            <tr>
+              <td>経理部</td>
+              <td>課長</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>経理部</td>
+              <td>一般社員</td>
+              <td>1500</td>
+            </tr>
+            <tr>
+              <td>経営部</td>
+              <td>部長</td>
+              <td>2500</td>
+            </tr>
+            <tr>
+              <td>経営部</td>
+              <td>課長</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>経営部</td>
+              <td>一般社員</td>
+              <td>1500</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

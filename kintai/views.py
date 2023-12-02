@@ -19,3 +19,6 @@ def todaycostfunc(request):
 
 def laborstandardact(request):
   return render(request, 'kintaiapp/laborstandardact.html')
+
+def detailcostfunc(request):
+  return render(request, 'kintaiapp/detailcost.html')
