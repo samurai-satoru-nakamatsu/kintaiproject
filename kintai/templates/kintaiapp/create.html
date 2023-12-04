@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+  <div class="container-fluid px-4">
+    <h1 class="mt-4">勤怠データ作成画面</h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">従業員勤怠データ作成画面</li>
+    </ol>
+    <div class="m-2">
+      <a href="{% url 'edit' %}" class="btn btn-link" tabindex="-1" role="button" aria-disabled="true">戻る</a>
+    </div>
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        作成
+      </div>
+      <div class="card-body">
+        <form action="" method="POST">{% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="作成する">
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

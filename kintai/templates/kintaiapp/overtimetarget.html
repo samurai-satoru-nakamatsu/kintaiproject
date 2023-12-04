@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+  <div class="container-fluid px-4">
+    <h1 class="mt-4">残業時間目標設定</h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">残業目標</li>
+    </ol>
+    <div class="m-2">
+      <a href="{% url 'kintaitop' %}" class="btn btn-link" tabindex="-1" role="button" aria-disabled="true">トップに戻る</a>
+    </div>
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        現在の残業時間目標
+      </div>
+      <div class="card-body">
+        <h3>現在の残業時間目標:
+          {% for item in object_list %}
+          {{ item.name }}</h3>
+        <a href="{% url 'updateovertimetarget' item.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">目標設定</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

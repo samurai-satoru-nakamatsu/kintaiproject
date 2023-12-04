@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+  <div class="container-fluid px-4">
+    <h1 class="mt-4">勤怠データ削除画面</h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">従業員勤怠データ削除画面</li>
+    </ol>
+    <div class="m-2">
+      <a href="{% url 'edit' %}" class="btn btn-link" tabindex="-1" role="button" aria-disabled="true">戻る</a>
+    </div>
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        削除
+      </div>
+      <div class="card-body">
+        <div class="card-body">
+          <form action="" method="POST">{% csrf_token %}
+            <p><strong>従業員名:</strong>{{ object.employee.name }}</p>
+            <p><strong>従業員番号:</strong>{{ object.employee.number }}</p>
+            <p><strong>部署:</strong>{{ object.employee.department }}</p>
+            <p><strong>役職:</strong>{{ object.employee.position }}</p>
+            <p><strong>出勤時刻:</strong>{{ object.checkin }}</p>
+            <p><strong>退勤時刻:</strong>{{ object.checkout }}</p>
+            <p><strong>残業時間:</strong>{{ object.overtime }}</p>
+            <p><strong>時給(残業時):</strong>{{ object.overpaycheck }}</p>
+            <p><strong>超過給料:</strong>{{ object.overtimealert }}</p>
+            <p><strong>残業警告:</strong>{{ object.reasonforabsense }}</p>
+        </div>
+        <form action="" method="POST">{% csrf_token %}
+          <input class="btn btn-danger" type="submit" value="削除します">
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

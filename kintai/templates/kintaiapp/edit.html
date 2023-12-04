@@ -3,14 +3,17 @@
 {% block content %}
 <main>
   <div class="container-fluid px-4">
-    <h1 class="mt-4">全体管理</h1>
+    <h1 class="mt-4">勤怠編集</h1>
     <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item active">全体管理表</li>
+      <li class="breadcrumb-item active">勤怠編集画面</li>
     </ol>
+    <div class="m-2">
+      <a href="{% url 'create' %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">新規作成</a>
+    </div>
     <div class="card mb-4">
       <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        DataTable Example
+        従業員勤怠データ一覧表
       </div>
       <div class="card-body">
         <table class="table" id="datatablesSimple">
@@ -45,7 +48,7 @@
             </tr>
           </tfoot>
           <tbody>
-            {% for item in kintaidata %}
+            {% for item in object_list %}
             <tr>
               <td>{{ item.employee.name }}</td>
               <td>{{ item.employee.number }}</td>
@@ -58,6 +61,9 @@
               <td>{{ item.overpaycheck }}</td>
               <td>{{ item.overtimealert }}</td>
               <td>{{ item.reasonforabsense }}</td>
+              <td><a href="{% url 'detail' item.pk %}" class="btn btn btn-secondary" tabindex="-1" role="button" aria-disabled="true">詳細</a></td>
+              <td><a href="{% url 'update' item.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a></td>
+              <td><a href="{% url 'delete' item.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></td>
             </tr>
             {% endfor %}
           </tbody>

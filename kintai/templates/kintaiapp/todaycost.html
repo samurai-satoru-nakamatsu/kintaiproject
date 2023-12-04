@@ -7,6 +7,20 @@
     <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item active">今日の予算と現在の人件費</li>
     </ol>
+    <div class="m-2">
+      <a href="{% url 'kintaitop' %}" class="btn btn-link" tabindex="-1" role="button" aria-disabled="true">トップに戻る</a>
+    </div>
   </div>
+
+  <div class="col-xl-6">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-chart-bar me-1"></i>
+            人件費推移
+        </div>
+        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+    </div>
+</div>
+</div>
 </main>
 {% endblock %}

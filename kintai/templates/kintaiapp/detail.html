@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+  <div class="container-fluid px-4">
+    <h1 class="mt-4">詳細画面</h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">従業員勤怠データ詳細画面</li>
+    </ol>
+    <div class="m-2">
+      <a href="{% url 'edit' %}" class="btn btn-link" tabindex="-1" role="button" aria-disabled="true">戻る</a>
+    </div>
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        詳細
+      </div>
+      <div class="card-body">
+        <table class="table" id="datatablesSimple">
+          <thead>
+            <tr>
+              <th>従業員名</th>
+              <th>社員番号</th>
+              <th>部署</th>
+              <th>役職</th>
+              <th>出勤時刻</th>
+              <th>退勤時刻</th>
+              <th>残業時間</th>
+              <th>時給(残業時)</th>
+              <th>超過給料</th>
+              <th>残業警告</th>
+              <th>欠勤理由</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ object.employee.name }}</td>
+              <td>{{ object.employee.number }}</td>
+              <td>{{ object.employee.department }}</td>
+              <td>{{ object.employee.position }}</td>
+              <td>{{ object.checkin }}</td>
+              <td>{{ object.checkout }}</td>
+              <td>{{ object.overtime }}</td>
+              <td>{{ object.hourlypaycheck }}</td>
+              <td>{{ object.overpaycheck }}</td>
+              <td>{{ object.overtimealert }}</td>
+              <td>{{ object.reasonforabsense }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
