@@ -96,3 +96,8 @@ class Overtimetarget(models.Model):
    verbose_name='目標残業時間',
    default = '0:00:00',
   )
+
+class Budget(models.Model):
+  name = models.IntegerField(
+   verbose_name='人件費予算(超過分)',
+  )

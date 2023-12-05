@@ -3,71 +3,24 @@
 {% block content %}
 <main>
   <div class="container-fluid px-4">
-    <h1 class="mt-4">勤怠編集</h1>
+    <h1 class="mt-4">予算人件費設定</h1>
     <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item active">勤怠編集画面</li>
+      <li class="breadcrumb-item active">今日の人件費予算(残業超過分)</li>
     </ol>
     <div class="m-2">
-      <a href="{% url 'create' %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">新規作成</a>
+      <a href="{% url 'kintaitop' %}" class="btn btn-link" tabindex="-1" role="button" aria-disabled="true">トップに戻る</a>
     </div>
     <div class="card mb-4">
       <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        従業員勤怠データ一覧表
+        超過人件費予算分を設定する
       </div>
       <div class="card-body">
-        <table class="table" id="datatablesSimple">
-          <thead>
-            <tr>
-              <th>従業員名</th>
-              <th>社員番号</th>
-              <th>部署</th>
-              <th>役職</th>
-              <th>出勤時刻</th>
-              <th>退勤時刻</th>
-              <th>残業時間</th>
-              <th>時給(残業時)</th>
-              <th>超過給料</th>
-              <th>残業警告</th>
-              <th>欠勤理由</th>
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <th>従業員名</th>
-              <th>社員番号</th>
-              <th>部署</th>
-              <th>役職</th>
-              <th>出勤時刻</th>
-              <th>退勤時刻</th>
-              <th>残業時間</th>
-              <th>時給(残業時)</th>
-              <th>超過給料</th>
-              <th>残業警告</th>
-              <th>欠勤理由</th>
-            </tr>
-          </tfoot>
-          <tbody>
-            {% for item in object_list %}
-            <tr>
-              <td>{{ item.employee.name }}</td>
-              <td>{{ item.employee.number }}</td>
-              <td>{{ item.employee.department }}</td>
-              <td>{{ item.employee.position }}</td>
-              <td>{{ item.checkin }}</td>
-              <td>{{ item.checkout }}</td>
-              <td>{{ item.overtime }}</td>
-              <td>{{ item.hourlypaycheck }}</td>
-              <td>{{ item.overpaycheck }}</td>
-              <td>{{ item.overtimealert }}</td>
-              <td>{{ item.reasonforabsense }}</td>
-              <td><a href="{% url 'detail' item.pk %}" class="btn btn btn-secondary" tabindex="-1" role="button" aria-disabled="true">詳細</a></td>
-              <td><a href="{% url 'update' item.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a></td>
-              <td><a href="{% url 'delete' item.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+        <h3>今日の人件費予算(残業超過分):
+          {% for item in object_list %}
+          {{ item.name }}</h3>
+        <a href="{% url 'budgetupdate' item.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">予算設定</a>
+        {% endfor %}
       </div>
     </div>
   </div>

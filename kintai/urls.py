@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
-from .views import KintaiList, KintaiDetail, KintaiCreate, KintaiUpdate, KintaiDelete, OvertimetargetList, OvertimetargetUpdate
+from .views import KintaiList, KintaiDetail, KintaiCreate, KintaiUpdate, KintaiDelete, OvertimetargetList, OvertimetargetUpdate, BudgetList, BudgetUpdate
+
 
 urlpatterns = [
     path('', views.topfunc, name='top'),
@@ -16,4 +17,7 @@ urlpatterns = [
     path('kintai/delete/<int:pk>', KintaiDelete.as_view(), name='delete'),
     path('kintai/overtimetarget/', OvertimetargetList.as_view(), name='overtimetarget'),
     path('kintai/updateovertimetarget/<int:pk>', OvertimetargetUpdate.as_view(), name='updateovertimetarget'),
+    path('kintai/budget/', BudgetList.as_view(), name='budget'),
+    path('kintai/updatebudget/<int:pk>', BudgetUpdate.as_view(), name='budgetupdate'),
+    path('kintai/updatebudget/', BudgetUpdate.as_view(), name='budgetupdate'),
 ]

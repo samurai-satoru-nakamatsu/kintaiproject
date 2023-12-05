@@ -46,82 +46,63 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xl-6">
-        <div class="card mb-4">
-          <div class="card-header">
-            <i class="fas fa-chart-area me-1"></i>
-            Area Chart Example
-          </div>
-          <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+      <div class="card mb-4">
+        <div class="card-header">
+          <i class="fas fa-table me-1"></i>
+          全体管理表
         </div>
-      </div>
-      <div class="col-xl-6">
-        <div class="card mb-4">
-          <div class="card-header">
-            <i class="fas fa-chart-bar me-1"></i>
-            Bar Chart Example
-          </div>
-          <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+        <div class="card-body">
+          <table class="table" id="datatablesSimple">
+            <thead>
+              <tr>
+                <th>従業員名</th>
+                <th>社員番号</th>
+                <th>部署</th>
+                <th>役職</th>
+                <th>出勤時刻</th>
+                <th>退勤時刻</th>
+                <th>残業時間</th>
+                <th>時給(残業時)</th>
+                <th>超過給料</th>
+                <th>残業警告</th>
+                <th>欠勤理由</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>従業員名</th>
+                <th>社員番号</th>
+                <th>部署</th>
+                <th>役職</th>
+                <th>出勤時刻</th>
+                <th>退勤時刻</th>
+                <th>残業時間</th>
+                <th>時給(残業時)</th>
+                <th>超過給料</th>
+                <th>残業警告</th>
+                <th>欠勤理由</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              {% for item in kintaidata %}
+              <tr>
+                <td>{{ item.employee.name }}</td>
+                <td>{{ item.employee.number }}</td>
+                <td>{{ item.employee.department }}</td>
+                <td>{{ item.employee.position }}</td>
+                <td>{{ item.checkin }}</td>
+                <td>{{ item.checkout }}</td>
+                <td>{{ item.overtime }}</td>
+                <td>{{ item.hourlypaycheck }}</td>
+                <td>{{ item.overpaycheck }}</td>
+                <td>{{ item.overtimealert }}</td>
+                <td>{{ item.reasonforabsense }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-    <div class="card mb-4">
-      <div class="card-header">
-        <i class="fas fa-table me-1"></i>
-        全体管理表
-      </div>
-      <div class="card-body">
-        <table class="table" id="datatablesSimple">
-          <thead>
-            <tr>
-              <th>従業員名</th>
-              <th>社員番号</th>
-              <th>部署</th>
-              <th>役職</th>
-              <th>出勤時刻</th>
-              <th>退勤時刻</th>
-              <th>残業時間</th>
-              <th>時給(残業時)</th>
-              <th>超過給料</th>
-              <th>残業警告</th>
-              <th>欠勤理由</th>
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <th>従業員名</th>
-              <th>社員番号</th>
-              <th>部署</th>
-              <th>役職</th>
-              <th>出勤時刻</th>
-              <th>退勤時刻</th>
-              <th>残業時間</th>
-              <th>時給(残業時)</th>
-              <th>超過給料</th>
-              <th>残業警告</th>
-              <th>欠勤理由</th>
-            </tr>
-          </tfoot>
-          <tbody>
-            {% for item in kintaidata %}
-            <tr>
-              <td>{{ item.employee.name }}</td>
-              <td>{{ item.employee.number }}</td>
-              <td>{{ item.employee.department }}</td>
-              <td>{{ item.employee.position }}</td>
-              <td>{{ item.checkin }}</td>
-              <td>{{ item.checkout }}</td>
-              <td>{{ item.overtime }}</td>
-              <td>{{ item.hourlypaycheck }}</td>
-              <td>{{ item.overpaycheck }}</td>
-              <td>{{ item.overtimealert }}</td>
-              <td>{{ item.reasonforabsense }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
 </main>
 {% endblock %}

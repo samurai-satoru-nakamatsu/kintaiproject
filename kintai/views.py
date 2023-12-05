@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import KintaiModel, Overtimetarget
+from .models import KintaiModel, Overtimetarget, Budget
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -72,3 +72,22 @@ class OvertimetargetUpdate(UpdateView):
     context = super().get_context_data(**kwargs)
     context['object_list'] = Overtimetarget.objects.all()
     return context
+  
+
+class BudgetList(ListView):
+  template_name = 'kintaiapp/budget.html'
+  model = Budget
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['object_list'] = Budget.objects.all()
+    return context
+
+class BudgetUpdate(UpdateView):
+  template_name = 'kintaiapp/updatebudget.html'
+  model = Budget
+  fields = '__all__'
+  success_url = reverse_lazy('budget')
+
+
+
