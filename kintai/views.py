@@ -90,4 +90,19 @@ class BudgetUpdate(UpdateView):
   success_url = reverse_lazy('budget')
 
 
+class OvertimealertList(ListView):
+  model = KintaiModel
+  template_name = 'kintaiapp/overtime.html'
+
+  def get_queryset(self):
+    queryset = super().get_queryset()
+    overtimetarget = Overtimetarget.object.get(pk=1)
+
+    for item in queryset:
+      overtime = item.checkout - item.checkin - '9:00:00'
+      if overtime > overtimetarget.name:
+        item.overtimealert = '残業注意'
+      else:
+        item.overtimealert = '問題なし'
+    return queryset
 

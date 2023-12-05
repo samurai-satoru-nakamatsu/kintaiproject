@@ -95,7 +95,7 @@
                 <td>{{ item.overtime }}</td>
                 <td>{{ item.hourlypaycheck }}</td>
                 <td>{{ item.overpaycheck }}</td>
-                <td>{{ item.overtimealert }}</td>
+                <td>{% if item.overtime > overtimetarget.name %}残業注意{% endif %}</td>
                 <td>{{ item.reasonforabsense }}</td>
               </tr>
               {% endfor %}
