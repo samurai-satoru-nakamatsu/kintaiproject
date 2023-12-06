@@ -17,7 +17,9 @@
       </div>
       <div class="card-body">
         <form action="" method="POST">{% csrf_token %}
-          {{ form.name }}
+          {{ form.name }} 
+        <input class="btn btn-primary" type="submit" value="更新する">
+        </form>
       </div>
     </div>
   </div>

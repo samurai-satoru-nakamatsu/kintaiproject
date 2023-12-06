@@ -4,6 +4,7 @@ from .models import KintaiModel, Overtimetarget, Budget
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
+
 # Create your views here.
 
 def topfunc(request):
@@ -11,11 +12,14 @@ def topfunc(request):
 
 def kintaitopfunc(request):
   kintaidata = KintaiModel.objects.all()
-  return render(request, 'kintaiapp/index.html', {'kintaidata':kintaidata})
+  overtimetarget = Overtimetarget.objects.last()
+  return render(request, 'kintaiapp/index.html', {'kintaidata':kintaidata, 'overtimetarget':overtimetarget})
+
 
 def allmanagementfunc(request):
   kintaidata = KintaiModel.objects.all()
-  return render(request, 'kintaiapp/allmanagement.html', {'kintaidata':kintaidata})
+  overtimetarget = Overtimetarget.objects.last()
+  return render(request, 'kintaiapp/allmanagement.html', {'kintaidata':kintaidata, 'overtimetarget':overtimetarget})
 
 def overtimefunc(request):
   return render(request, 'kintaiapp/overtime.html')
@@ -25,6 +29,7 @@ def todaycostfunc(request):
 
 def detailcostfunc(request):
   return render(request, 'kintaiapp/detailcost.html')
+
 
 class KintaiList(ListView):
   template_name = 'kintaiapp/edit.html'
@@ -38,18 +43,18 @@ class KintaiCreate(CreateView):
   template_name = 'kintaiapp/create.html'
   model = KintaiModel
   fields = '__all__'
-  success_url = reverse_lazy('list')
+  success_url = reverse_lazy('edit')
 
 class KintaiUpdate(UpdateView):
   template_name = 'kintaiapp/update.html'
   model = KintaiModel
   fields = '__all__'
-  success_url = reverse_lazy('list')
+  success_url = reverse_lazy('edit')
 
 class KintaiDelete(DeleteView):
   template_name = 'kintaiapp/delete.html'
   model = KintaiModel
-  success_url = reverse_lazy('list')
+  success_url = reverse_lazy('edit')
 
 
 
@@ -92,15 +97,16 @@ class BudgetUpdate(UpdateView):
 
 class OvertimealertList(ListView):
   model = KintaiModel
-  template_name = 'kintaiapp/overtime.html'
+  template_name = 'kintaiapp/index.html'
 
   def get_queryset(self):
     queryset = super().get_queryset()
     overtimetarget = Overtimetarget.object.get(pk=1)
+    overtimetarget_item = overtimetarget.name
 
     for item in queryset:
       overtime = item.checkout - item.checkin - '9:00:00'
-      if overtime > overtimetarget.name:
+      if overtime > overtimetarget_item:
         item.overtimealert = '残業注意'
       else:
         item.overtimealert = '問題なし'

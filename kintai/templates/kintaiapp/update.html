@@ -20,17 +20,9 @@
       </div>
       <div class="card-body">
         <form action="" method="POST">{% csrf_token %}
-          <p><strong>従業員名:</strong>{{ object.employee.name }}</p>
-          <p><strong>従業員番号:</strong>{{ object.employee.number }}</p>
-          <p><strong>部署:</strong>{{ object.employee.department }}</p>
-          <p><strong>役職:</strong>{{ object.employee.position }}</p>
-          <p><strong>出勤時刻:</strong>{{ form.checkin }}</p>
-          <p><strong>退勤時刻:</strong>{{ form.checkout }}</p>
-          <p><strong>残業時間:</strong>{{ object.overtime }}</p>
-          <p><strong>時給(残業時):</strong>{{ form.overpaycheck }}</p>
-          <p><strong>超過給料:</strong>{{ object.overtimealert }}</p>
-          <p><strong>残業警告:</strong>{{ object.reasonforabsense }}</p>
-          <p><input class="btn btn-primary" type="submit" value="更新する"></p>
+          {{ form.as_p }}
+          <input class="btn btn-primary" type="submit" value="更新する">
+        </form>
       </div>
     </div>
   </div>
