@@ -1,0 +1,20 @@
+databases:
+  - name: kintaiproject
+    databaseName: kintaiproject
+    user: kintaiproject
+
+services:
+  - type: web
+    name: kintaiproject
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn kintaiproject.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: kintaiproject
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
