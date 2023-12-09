@@ -70,10 +70,16 @@ class KintaiModel(models.Model):
   hourlypaycheck = models.IntegerField(
       verbose_name="時給(残業時)",
   )
-  
+  """
   overpaycheck = models.IntegerField(
     verbose_name = '超過給料'
   )
+  """
+  @property
+  def overpaycheck(self):
+    overtime = (self.checkout - self.checkin - datetime.timedelta(hours=9)).seconds
+    overpaycheck = overtime/60/60*self.hourlypaycheck
+    return int(overpaycheck)
   """
   overtimealert = models.CharField(
     verbose_name = '残業警告',
