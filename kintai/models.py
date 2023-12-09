@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+import datetime
 
 # Create your models here.
 class Department(models.Model):
@@ -73,13 +74,23 @@ class KintaiModel(models.Model):
   overpaycheck = models.IntegerField(
     verbose_name = '超過給料'
   )
-
+  """
   overtimealert = models.CharField(
     verbose_name = '残業警告',
     max_length=50,
     default='問題なし',
     blank = True,
   )
+  """
+
+  @property
+  def overtimealert(self):
+    overtime = (self.checkout - self.checkin - datetime.timedelta(hours=9)).seconds
+    overtimetarget = (Overtimetarget.objects.last().name.hour * 60 + Overtimetarget.objects.last().name.minute) * 60
+    if overtime >= overtimetarget:
+      return '残業注意'
+    else:
+      return ''
 
   reasonforabsense = models.CharField(
     max_length=50,

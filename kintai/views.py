@@ -3,6 +3,7 @@ from django.utils import timezone
 from .models import KintaiModel, Overtimetarget, Budget
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+import datetime
 
 
 # Create your views here.
@@ -22,7 +23,18 @@ def allmanagementfunc(request):
   return render(request, 'kintaiapp/allmanagement.html', {'kintaidata':kintaidata, 'overtimetarget':overtimetarget})
 
 def overtimefunc(request):
-  return render(request, 'kintaiapp/overtime.html')
+  overtimetarget = Overtimetarget.objects.last()
+  filtered_data = KintaiModel.objects.filter(overtime__gt = overtimetarget.name)
+  """
+  for item in filtered_data:
+    if item.overtime > overtimetarget.name:
+      item.overtimealert = '残業注意'
+    else:
+      item.overtimealert = '問題なし'
+  """
+  return render(request, 'kintaiapp/overtime.html', {'filtered_data':filtered_data})
+
+
 
 def todaycostfunc(request):
   return render(request, 'kintaiapp/todaycost.html')
@@ -95,20 +107,6 @@ class BudgetUpdate(UpdateView):
   success_url = reverse_lazy('budget')
 
 
-class OvertimealertList(ListView):
-  model = KintaiModel
-  template_name = 'kintaiapp/index.html'
 
-  def get_queryset(self):
-    queryset = super().get_queryset()
-    overtimetarget = Overtimetarget.object.get(pk=1)
-    overtimetarget_item = overtimetarget.name
 
-    for item in queryset:
-      overtime = item.checkout - item.checkin - '9:00:00'
-      if overtime > overtimetarget_item:
-        item.overtimealert = '残業注意'
-      else:
-        item.overtimealert = '問題なし'
-    return queryset
 

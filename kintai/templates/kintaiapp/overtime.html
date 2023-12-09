@@ -48,18 +48,21 @@
             </tr>
           </tfoot>
           <tbody>
+            {% for item in filtered_data %}
             <tr>
-              <td>野口紘史</td>
-              <td>1234567</td>
-              <td>営業部</td>
-              <td>部長</td>
-              <td>2023/12/2 9:00</td>
-              <td>2023/12/2 19:00</td>
-              <td>2:00</td>
-              <td>2500</td>
-              <td>26,250</td>
-              <td>なし</td>
+              <td>{{ item.employee.name }}</td>
+              <td>{{ item.employee.number }}</td>
+              <td>{{ item.employee.department }}</td>
+              <td>{{ item.employee.position }}</td>
+              <td>{{ item.checkin }}</td>
+              <td>{{ item.checkout }}</td>
+              <td>{{ item.overtime }}</td>
+              <td>{{ item.hourlypaycheck }}</td>
+              <td>{{ item.overpaycheck }}</td>
+              <td style="color: red">{{ item.overtimealert }}</td>
+              <td>{{ item.reasonforabsense }}</td>
             </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
