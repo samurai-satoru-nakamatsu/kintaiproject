@@ -27,7 +27,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
-DEBUG = True
 
 ALLOWED_HOSTS = []
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
@@ -100,7 +99,7 @@ else:
     DATABASES = {
         'default': dj_database_url.config(
             # Feel free to alter this value to suit your needs.
-            default='postgresql://postgres:postgres@localhost:5432/kintaiproject',
+            default='postgres://kintaiproject:KQbqFEiot0in02OobQMamHEr48p092Tz@dpg-clq2058gqk6s738nuut0-a/kintaiproject',
             conn_max_age=600
         )
     }
